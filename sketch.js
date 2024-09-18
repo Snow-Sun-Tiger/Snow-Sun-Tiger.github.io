@@ -12,50 +12,49 @@ const Y_SPEED = 10;
 let yMovement = -Y_SPEED;
 
 
+class Platform {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+}
 
-
-
-
-// ist die Position der Platform auf der x-Achse (obere linke Ecke)  
-let xPlatform = 300;
-
-// ist die Position der Platform auf der y-Achse (obere linke Ecke) 
-let yPlatform = 700;
-
-let xPlatforms = [300, 300, 250, 350, 150]
-let yPlatforms = [700, 550, 500, 500, 600]
-console.log(platforms[1])
-
-
- rect (xPlatforms[1] ,yPlatforms[1], 80, 15)
-
+ let platforms = [new Platform(300,700), new Platform(200,600), new Platform(400,500),  
+  new Platform (430, 430), new Platform(200, 290), new Platform(500, 250), 
+  new Platform(400, 500) ]
+  random: Platform
 
 // Hintergrund width, height 
 function setup() {
-  createCanvas(600, 1000);
+  createCanvas(700, displayHeight);
 }
+
+let platformY = 800
 
 //Helligkeit Dunkel < Hell 
 function draw() { 
-  background(10);
+  background(10
 
-  let isPlayerHittingOnX = xPlatform - 25 < xPlayer && xPlayer < xPlatform + 80
-  let isPlayerHittingOnY = yPlatform  < yPlayer + 35 &&  yPlayer < yPlatform
-  if (isPlayerHittingOnX && isPlayerHittingOnY) {
-    console.log("Spieler auf Plattform")
+  );
+
+  for (let i = 0; i < platforms.length; i++) {
+    let isPlayerHittingOnX = platforms[i].x - 25 < xPlayer && xPlayer < platforms[i].x + 80
+    let isPlayerHittingOnY = platforms[i].y - 30 < yPlayer &&  yPlayer - 5 < platforms[i].y
+
+    if (isPlayerHittingOnX && isPlayerHittingOnY && yMovement > 0) {
+      console.log("Spieler auf Plattform")
+      yMovement = -Y_SPEED
+      platformY = platforms[i].y
+    }
   }
 
   
   yPlayer = yPlayer + yMovement
 
   //lässt den Spieler runterkommen
-  if (yPlayer <= 350) {
+  if (yPlayer <= platformY - 300) {
     yMovement = Y_SPEED
 
-  }
-
-  if (isPlayerHittingOnX && isPlayerHittingOnY) {
-    yMovement = -Y_SPEED
   }
 
   // legt fest welche pfeile (rechts oder links) durch gedrückt halten den Char auf der x-Achse bewegen
@@ -66,11 +65,16 @@ function draw() {
     xPlayer = xPlayer + 5
   }
 
-// bestimmt aussehen Platform(rect) Charakter(square)
-rect(xPlatforms[0], yPlatforms[0], 80, 15)
+// Plattformen einzeichnen
+for (let i = 0; i < platforms.length; i++) {
+  rect(platforms[i].x, platforms[i].y, 80, 15)
+}
+
+
+// Spieler zeichnen
 square(xPlayer, yPlayer, 25)
 
-rect (xPlatforms[4], yPlatforms[4], 80, 15)
-rect ()
+
+
 
 }
