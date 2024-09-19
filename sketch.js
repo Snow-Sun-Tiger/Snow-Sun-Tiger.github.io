@@ -37,12 +37,12 @@ function draw() {
   background(10);
 
   if (platforms.length == 0) {
-    platforms = [new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    platforms = [new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight)),
     new Platform(canvasWidth / 2 , canvasHeight - 200)];
   }
 
@@ -54,7 +54,7 @@ function draw() {
       console.log("Spieler auf Plattform")
       yMovement = -Y_SPEED
       platformY = platforms[i].y
-      platforms[i] = new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200);
+      platforms[i] = new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight));
     }
   }
 
