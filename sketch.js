@@ -18,6 +18,8 @@ class Platform {
     this.y = y;
   }
 }
+let canvasWidth;
+let canvasHeight;
 
  let platforms = [
   new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
@@ -32,7 +34,9 @@ class Platform {
 
 // Hintergrund width, height 
 function setup() {
-  createCanvas(700, displayHeight);
+  canvasHeight = displayHeight;
+  canvasWidth = Math.min(displayWidth, 700);
+  createCanvas(canvasWidth, canvasHeight);
 }
 
 let platformY = 800
