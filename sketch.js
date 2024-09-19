@@ -22,12 +22,12 @@ let canvasWidth;
 let canvasHeight;
 
  let platforms = [
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
-  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
   new Platform(300,700),
   ]
   random: Platform
