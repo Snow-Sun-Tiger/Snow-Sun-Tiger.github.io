@@ -79,11 +79,11 @@ function draw() {
   }
 
 
-  if (touches.length > 0 && touches[0] > 700/2) {
+  if (touches.length > 0 && touches[0].x > 700/2) {
     xPlayer = xPlayer + 5
   }
 
-  if (touches.length > 0 && touches[0] < 700/2) {
+  if (touches.length > 0 && touches[0].x < 700/2) {
     xPlayer = xPlayer - 5
   }
   
