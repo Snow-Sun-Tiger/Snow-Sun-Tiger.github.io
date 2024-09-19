@@ -21,21 +21,12 @@ class Platform {
 let canvasWidth;
 let canvasHeight;
 
- let platforms = [
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
-  new Platform(300,700),
-  ]
-  random: Platform
+ let platforms = [];
 
 // Hintergrund width, height 
 function setup() {
-  canvasHeight = displayHeight;
-  canvasWidth = Math.min(displayWidth, 700);
+  canvasHeight = windowHeight;
+  canvasWidth = Math.min(windowWidth, 700);
   createCanvas(canvasWidth, canvasHeight);
 }
 
@@ -44,6 +35,16 @@ let platformY = 800
 //Helligkeit Dunkel < Hell 
 function draw() { 
   background(10);
+
+  if (platforms.length == 0) {
+    platforms = [new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200),
+    new Platform(canvasWidth / 2 , canvasHeight - 200)];
+  }
 
   for (let i = 0; i < platforms.length; i++) {
     let isPlayerHittingOnX = platforms[i].x - 25 < xPlayer && xPlayer < platforms[i].x + 80
