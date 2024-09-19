@@ -54,7 +54,7 @@ function draw() {
       console.log("Spieler auf Plattform")
       yMovement = -Y_SPEED
       platformY = platforms[i].y
-      platforms[i] = new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200)
+      platforms[i] = new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight) + 200);
     }
   }
 
