@@ -79,13 +79,13 @@ function draw() {
   }
 
 
-    if (mouseX > 700/2) {
-      xPlayer = xPlayer + 5
-    }
-  
-    if (mouseX < 700/2) {
-      xPlayer = xPlayer - 5
-    }
+  if (touches.length > 0 && touches[0] > 700/2) {
+    xPlayer = xPlayer + 5
+  }
+
+  if (touches.length > 0 && touches[0] < 700/2) {
+    xPlayer = xPlayer - 5
+  }
   
 
 // Plattformen einzeichnen
