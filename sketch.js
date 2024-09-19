@@ -7,7 +7,7 @@ let xPlayer = 310
 // ist die Position des Spielers auf der y-Achse (obere linke Ecke)  
 let yPlayer = 680;
 
-const Y_SPEED = 10;
+const Y_SPEED = 15;
 // ist die bewegung
 let yMovement = -Y_SPEED;
 
@@ -19,9 +19,15 @@ class Platform {
   }
 }
 
- let platforms = [new Platform(300,700), new Platform(200,600), new Platform(400,500),  
-  new Platform (430, 430), new Platform(200, 290), new Platform(500, 250), 
-  new Platform(400, 500) ]
+ let platforms = [
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200),
+  new Platform(300,700),
+  ]
   random: Platform
 
 // Hintergrund width, height 
@@ -33,9 +39,7 @@ let platformY = 800
 
 //Helligkeit Dunkel < Hell 
 function draw() { 
-  background(10
-
-  );
+  background(10);
 
   for (let i = 0; i < platforms.length; i++) {
     let isPlayerHittingOnX = platforms[i].x - 25 < xPlayer && xPlayer < platforms[i].x + 80
@@ -45,6 +49,7 @@ function draw() {
       console.log("Spieler auf Plattform")
       yMovement = -Y_SPEED
       platformY = platforms[i].y
+      platforms[i] = new Platform(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600) + 200)
     }
   }
 
@@ -64,6 +69,24 @@ function draw() {
   if (keyIsDown(RIGHT_ARROW)) {
     xPlayer = xPlayer + 5
   }
+
+
+  if (keyIsDown(ENTER)) {
+    xPlayer = 310
+
+    // ist die Position des Spielers auf der y-Achse (obere linke Ecke)  
+    yPlayer = 10;
+  }
+
+
+    if (mouseX > 700/2) {
+      xPlayer = xPlayer + 5
+    }
+  
+    if (mouseX < 700/2) {
+      xPlayer = xPlayer - 5
+    }
+  
 
 // Plattformen einzeichnen
 for (let i = 0; i < platforms.length; i++) {
