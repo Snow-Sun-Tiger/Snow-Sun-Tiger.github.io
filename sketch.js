@@ -75,8 +75,8 @@ function draw() {
   }
 
 
-  if (keyIsDown(ENTER) || yPlayer > 900) {
-    xPlayer = 310
+  if (keyIsDown(ENTER) || yPlayer > canvasHeight + 100) {
+    xPlayer = canvasWidth / 2
 
     // ist die Position des Spielers auf der y-Achse (obere linke Ecke)  
     yPlayer = 10;
