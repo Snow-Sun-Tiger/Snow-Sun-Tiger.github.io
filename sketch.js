@@ -37,18 +37,24 @@ function setup() {
 let platformY = 800;
 let punktestand = 0;
 
+
+// Normales Scroll-Verhalten bei Touch-Gesten ausschalten
+function touchStarted() {
+  return false;
+}
+
 //Helligkeit Dunkel < Hell 
 function draw() {
   background(10);
 
   if (platforms.length == 0) {
-    platforms = [new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),"yellow"),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),'red'),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),'blue'),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),'green'),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),"red"),
-    new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight),"red"),
-    new Platform(canvasWidth / 2, canvasHeight - 200, 'lightgreen')];
+    platforms = [new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"#FFC107"),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'tomato'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'cornflowerblue'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'limegreen'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"lavender"),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"#9966CC"),
+    new Platform((canvasWidth - 80) / 2, canvasHeight - 200, 'lightgreen')];
   }
 
   for (let i = 0; i < platforms.length; i++) {
@@ -64,9 +70,11 @@ function draw() {
       yMovement = -Y_SPEED
       platformY = platforms[i].y
       let oldColor = platforms[i].color;
-      platforms[i] = new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight), oldColor)
+      platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),oldColor)
     }
   }
+
+  
 
 
   yPlayer = yPlayer + yMovement
@@ -86,8 +94,17 @@ function draw() {
   }
 
 
+  if (xPlayer < 0) {
+    xPlayer = canvasWidth - 10;
+  }
+
+  if (xPlayer > canvasWidth) {
+    xPlayer = 0;
+  }
+
+
   if (keyIsDown(ENTER) || yPlayer > canvasHeight + 200) {
-    xPlayer = canvasWidth / 2
+    xPlayer = Math.min(Math.max(xPlayer, 0), canvasWidth - 20)
     // ist die Position des Spielers auf der y-Achse (obere linke Ecke)  
     yPlayer = 10;
     if (punktestand > highscore) {
@@ -96,7 +113,7 @@ function draw() {
     punktestand = 0;
     for (let i = 0; i < platforms.length; i++) {
         let oldColor = platforms[i].color;
-        platforms[i] = new Platform(Math.floor(Math.random() * canvasWidth), Math.floor(Math.random() * canvasHeight), oldColor)
+        platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 100)), Math.floor(Math.max(100, Math.random() * canvasHeight)), oldColor)
     }
   }
   if (touches.length > 0 && touches[0].x > displayWidth / 2) {
@@ -122,7 +139,7 @@ function draw() {
 
 
   // Spieler zeichnen
-  fill('lightblue')
+  fill('dodgerblue')
   square(xPlayer, yPlayer, 25, 4,)
   
 
