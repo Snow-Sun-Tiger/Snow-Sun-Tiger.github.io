@@ -37,30 +37,30 @@ function setup() {
 let platformY = 800;
 let punktestand = 0;
 
-
 // Normales Scroll-Verhalten bei Touch-Gesten ausschalten
 function touchStarted() {
   return false;
 }
+
 
 //Helligkeit Dunkel < Hell 
 function draw() {
   background(10);
 
   if (platforms.length == 0) {
-    platforms = [new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"#FFC107"),
-    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'tomato'),
-    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'cornflowerblue'),
-    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),'limegreen'),
-    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"lavender"),
-    new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),"#9966CC"),
+    platforms = [new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), "#FFC107"),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), 'tomato'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), 'cornflowerblue'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), 'limegreen'),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), "lavender"),
+    new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), "#9966CC"),
     new Platform((canvasWidth - 80) / 2, canvasHeight - 200, 'lightgreen')];
   }
 
   for (let i = 0; i < platforms.length; i++) {
     let isPlayerHittingOnX = platforms[i].x - 25 < xPlayer && xPlayer < platforms[i].x + 80
     let isPlayerHittingOnY = platforms[i].y - 30 < yPlayer && yPlayer - 5 < platforms[i].y
-    
+
 
     if (isPlayerHittingOnX && isPlayerHittingOnY && yMovement > 0) {
       console.log("Spieler auf Plattform")
@@ -70,11 +70,9 @@ function draw() {
       yMovement = -Y_SPEED
       platformY = platforms[i].y
       let oldColor = platforms[i].color;
-      platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 80)),  Math.floor(Math.max(100, Math.random() * canvasHeight)),oldColor)
+      platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 80)), Math.floor(Math.max(100, Math.random() * canvasHeight)), oldColor)
     }
   }
-
-  
 
 
   yPlayer = yPlayer + yMovement
@@ -85,15 +83,6 @@ function draw() {
 
   }
 
-  // legt fest welche pfeile (rechts oder links) durch gedrückt halten den Char auf der x-Achse bewegen
-  if (keyIsDown(LEFT_ARROW)) {
-    xPlayer = xPlayer - 5
-  }
-  if (keyIsDown(RIGHT_ARROW)) {
-    xPlayer = xPlayer + 5
-  }
-
-
   if (xPlayer < 0) {
     xPlayer = canvasWidth - 10;
   }
@@ -102,6 +91,13 @@ function draw() {
     xPlayer = 0;
   }
 
+  if (mouseX < canvasWidth / 3) {
+    xPlayer = xPlayer - 5;
+  }
+
+  if (mouseX > canvasWidth / 3 * 2) {
+    xPlayer = xPlayer + 5;
+  }
 
   if (keyIsDown(ENTER) || yPlayer > canvasHeight + 200) {
     xPlayer = Math.min(Math.max(xPlayer, 0), canvasWidth - 20)
@@ -112,8 +108,8 @@ function draw() {
     }
     punktestand = 0;
     for (let i = 0; i < platforms.length; i++) {
-        let oldColor = platforms[i].color;
-        platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 100)), Math.floor(Math.max(100, Math.random() * canvasHeight)), oldColor)
+      let oldColor = platforms[i].color;
+      platforms[i] = new Platform(Math.floor(Math.random() * (canvasWidth - 100)), Math.floor(Math.max(100, Math.random() * canvasHeight)), oldColor)
     }
   }
   if (touches.length > 0 && touches[0].x > displayWidth / 2) {
@@ -123,11 +119,9 @@ function draw() {
   if (touches.length > 0 && touches[0].x < displayWidth / 2) {
     xPlayer = xPlayer - 5
 
-   
 
   }
-  
-  
+
 
   // Plattformen einzeichnen
   for (let i = 0; i < platforms.length; i++) {
@@ -141,7 +135,7 @@ function draw() {
   // Spieler zeichnen
   fill('dodgerblue')
   square(xPlayer, yPlayer, 25, 4,)
-  
+
 
   textSize(22)
   fill("yellow")
